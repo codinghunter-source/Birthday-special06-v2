@@ -1,5 +1,6 @@
 import React from "react";
 import Script from "next/script";
+import BackgroundMusicPlayer from "../components/BackgroundMusicPlayer";
 import "./globals.css";
 
 export default function RootLayout({
@@ -20,15 +21,22 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-[#080312]">
         {children}
 
-        <Script id="clarity" strategy="afterInteractive">
+        {/* Globally rendered romantic background music player */}
+        <BackgroundMusicPlayer />
+
+        <Script id="microsoft-clarity-script" strategy="afterInteractive">
           {`
-            (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];
-                y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "x2ewt3jbg9");
-          `}
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){
+        (c[a].q=c[a].q||[]).push(arguments)
+      };
+      t=l.createElement(r);
+      t.async=1;
+      t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];
+      y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "x2ewt3jbg9");
+  `}
         </Script>
       </body>
     </html>
